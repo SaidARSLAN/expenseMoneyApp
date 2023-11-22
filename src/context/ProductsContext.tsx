@@ -1,28 +1,50 @@
-import React, {createContext, useEffect} from 'react'
+import React, {createContext, useEffect, useState} from 'react'
 import { childrenType } from './MonetContext'
 
 
-const ProductContext = createContext({})
+type contextProps = {
 
+    products : product[]
+
+}
+
+const ProductContext = createContext<contextProps>({
+    products: []
+})
+
+interface product {
+
+    category: string,
+    description : string,
+    id : number,
+    image : string,
+    price : number,
+    rating : {
+        rate:number,
+        count : number
+    },
+    title:string
+
+}
 
 
 export const ProductProvider:React.FC<childrenType> = ( {children} ) => {
 
+    const [products, setProducts] = useState<product[]>([])
 
     const requestApi = () => {
-
-        fetch("https://fakestoreapi.com/products")
-        .then(res => res.json())
-        .then(json => console.log(json))
-
-    }
+        return fetch("https://fakestoreapi.com/products").then((res) => res.json());
+      };
+      
     useEffect(() => {
-
-        requestApi()
-
-    },[])
+        // Use the promise returned by requestApi
+        requestApi().then((json) => {
+          // Update the state inside the then block
+          setProducts(json);
+        });
+      }, []);
 return (
-    <ProductContext.Provider value={{}}>
+    <ProductContext.Provider value={{products}}>
         {children}
     </ProductContext.Provider>
 )
