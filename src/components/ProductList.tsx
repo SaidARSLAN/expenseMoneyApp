@@ -6,8 +6,8 @@ import Product from './Product'
 const ProductList = () => {
     const {products} = useContext(ProductContext)
   return (
-    <div>{products.map((item) => {
-        return <Product title={item.title} price={item.price}/>
+    <div className='huge-screen'>{products.map((item) => {
+        return <Product image={item.image} price={item.price}/>
       })}</div>
   )
 }

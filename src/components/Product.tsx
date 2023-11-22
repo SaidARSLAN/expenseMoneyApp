@@ -3,12 +3,11 @@ import GlobalContext from '../context/MonetContext'
 
 type productType = {
 
-    title:string,
+    image:string,
     price : number
 }
-const Product = ({title,price}:productType) => {
+const Product = ({image,price}:productType) => {
 
-    
     const {money,dispatch} = useContext(GlobalContext)
     
 
@@ -17,8 +16,11 @@ const Product = ({title,price}:productType) => {
         
     }
   return (
-    <div>
-    <p>{title} {price}$</p>
+    <div className='center'>
+    <div className='image-place'>
+    <img src={image} className='image'/>
+    <p>{price}$</p>
+    </div>
             <button onClick={handleClick}>EXPENSE</button>
     </div>
   )

@@ -12,8 +12,8 @@ function App() {
 
   return (
     
-    <div>
-      {money.money}
+    <div className='App'>
+      <h1>{money.money}</h1>
     <ProductList />
     </div>
   )
