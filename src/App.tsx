@@ -1,27 +1,20 @@
 import { useContext } from 'react'
 import './App.css'
 import GlobalContext from './context/MonetContext'
-import ProductContext from './context/ProductsContext'
+import ProductList from './components/ProductList'
 
 
 
 function App() {
+  const {money} = useContext(GlobalContext)
+
   
-  const {money,dispatch} = useContext(GlobalContext)
-  const {products} = useContext(ProductContext)
-  const handleClick = () => {
 
-    dispatch({type:"EXPENSE",payload:100})
-
-  }
   return (
     
     <div>
       {money.money}
-    <button onClick={handleClick}>EXPENSE</button>
-    <div>{products.map((item,idx) => {
-      return <p key={item.title + idx}>{item.title}</p>
-    })}</div>
+    <ProductList />
     </div>
   )
 }

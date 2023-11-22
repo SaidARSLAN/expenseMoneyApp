@@ -26,7 +26,7 @@ const reducer = (state:stateType,action:actionType):stateType => {
 
     switch (action.type) {
         case "EXPENSE":
-            return {money : state.money - action.payload}
+            return  state.money > 0 ? {money : state.money - action.payload} : {money : 0}
         default :
             return {money:0}
     }
@@ -43,7 +43,7 @@ const GlobalContext = createContext<contextProps>({
     }
 })
 
-type childrenType = {
+export type childrenType = {
 
     children: React.ReactNode
 
